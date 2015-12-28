@@ -29,7 +29,7 @@
     </div>
 
     <div class="item-container">
-      <div class="item-container-header">Username</div>
+      <div class="item-container-header">Username (Case-sensitive)</div>
       <div class="item-container-content">
         <label class="item">
           <div class="item-input-wrapper">
@@ -50,32 +50,6 @@
     </div>
 
     <div class='item-container'>
-      <div class='item-container-header'>Customizability</div>
-      <div class='item-container-content'>
-        <label class='item'>
-          Background Color
-          <input id='background_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
-        </label>
-      </div>
-      <div class='item-container-footer'>
-        Choose the app's background color. Used if High Contrast Mode is not selected. Note: Only available on Basalt watches that support many colors.
-      </div>
-    </div>
-
-    <div class='item-container'>
-      <div class='item-container-header'>Accessibility</div>
-      <div class='item-container-content'>
-        <label class='item'>
-          High Contrast Mode
-          <input id='high_contrast_checkbox' type='checkbox' class='item-toggle'>
-        </label>
-      </div>
-      <div class='item-container-footer'>
-        This switches the app colors to a higher contrast set that promotes readability in low light.
-      </div>
-    </div>
-
-    <div class='item-container'>
       <div class='button-container'>
         <input id='submit_button' type='button' class='item-button' value='SUBMIT'>
       </div>
@@ -86,23 +60,17 @@
     var usernameField = document.getElementById('usernameInput');
     var playStationTab = document.getElementById('playStationTab');
     var xboxTab = document.getElementById('xboxTab');
-    var backgroundColorPicker = document.getElementById('background_color_picker');
-    var highContrastCheckbox = document.getElementById('high_contrast_checkbox');
  
     var options = {
       'username': usernameField.value,
       'playstation': playStationTab.className,
-      'xbox': xboxTab.className,
-      'background_color': backgroundColorPicker.value,
-      'high_contrast': highContrastCheckbox.checked
+      'xbox': xboxTab.className
     };
 
     // Save for next launch
     localStorage['username'] = options['username'];
     localStorage['xbox'] = options['xbox'];
     localStorage['playstation'] = options['playstation'];
-    localStorage['background_color'] = options['background_color'];
-    localStorage['high_contrast'] = options['high_contrast'];
 
     console.log('Got options: ' + JSON.stringify(options));
     return options;
@@ -133,13 +101,9 @@
     var usernameField = document.getElementById('usernameInput');
     var playStationTab = document.getElementById('playStationTab');
     var xboxTab = document.getElementById('xboxTab');
-    var backgroundColorPicker = document.getElementById('background_color_picker');
-    var highContrastCheckbox = document.getElementById('high_contrast_checkbox');
 
     // Load any previously saved configuration, if available
     if(localStorage['username']) {
-      highContrastCheckbox.checked = JSON.parse(localStorage['high_contrast']);
-      backgroundColorPicker.value = localStorage['background_color'];
       usernameField.value= localStorage['username'];
       playStationTab.className=localStorage['playstation'];
       xboxTab.className=localStorage['xbox'];
